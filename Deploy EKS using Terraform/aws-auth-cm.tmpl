@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::************:role/cpp-demo-eksNodeRole
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes  
+      
+  mapUsers: |
+    - userarn: arn:aws:iam::************:user/awswallet1@mml.local
+      username: awswallet1@mml.local
+      groups:
+        - system:masters

@@ -1,0 +1,45 @@
+#################################### EKS Cluster Generic instance values ###########################################################################################
+
+aws_region                                       = "us-east-2"
+eks_name                                         = "Cluster-LK-4" //will be ignored
+eks_cluster_role_arn                             = "arn:aws:iam::************:role/cp4na-demo-eksClusterRole"
+eks_cluster_version                              = "1.19"
+eks_tag_Name                                     = "eks"
+eks_tag_Environment                              = "training"
+eks_vpc_config_subnet_ids                        = ["subnet-1", "subnet-2", "subnet-3"]
+eks_endpoint_private_access                      = "false"
+eks_endpoint_public_access                       = "true"
+eks_security_group_ids                           = ["sg-00", "sg-02"]
+#manage_aws_auth                                  = "true"
+
+###################################  EKS Node-Group-1 i.e (Node-Group-1) Variable Values ####################################################################################
+
+eks_node_group-1_name                            = "Cluster-LK-Node-Group"
+eks_node_group-1_instanes_types                  = ["t3.xlarge"]
+eks_node_group-1_role_arn                        = "arn:aws:iam::************:role/cp4na-demo-eksNodeRole"
+eks_node_group-1_subnet_ids                      = ["subnet-05", "subnet-08", "subnet-09"]
+eks_node_group-1_tags_Name                       = "intg-dev-ng-1"
+eks_node_group-1_disk_size                       = "100"
+eks_node_group-1_tags_Environment                = "training"
+eks_node_group-1_scaling_config_desired_size     = "2"                               # Number of Worker Nodes desired size.
+eks_node_group-1_scaling_config_max_size         = "2"                               # Number of Worker Nodes max size.
+eks_node_group-1_scaling_config_min_size         = "2"                               # Number of Worker Nodes min size.
+eks_node_group-1_remote_access_ec2_ssh_key       = "access_key"
+
+################################  EKS Additonal Node Group i.e (Node-Group-2) Variables Values ###############################################################################
+
+# Note:- This Additional Node Group is optional in case you want to create a EKS cluster with Additional Node Group i.e 2 different Node Group.
+#        The size of the node-group might be different, Suppose Bigger size and larger worker nodes with different Node Instance Role in different private subnets.
+
+# Note:- "Please uncomment the below lines if you want to create additional node-group as part of eks cluster creation."
+
+#eks_node_group-2_name                            = "intg-dev-ng-2"
+#eks_node_group-2_instanes_types                  = ["t3.large"]
+#eks_node_group-2_role_arn                        = "arn:aws:iam::{AWS AccountID}/nodeinstancerole"
+#eks_node_group-2_subnet_ids                      = ["subnet-xxxxxxxxxxxxx", "subnet-xxxxxxxxxxxxx", "subnet-xxxxxxxxxxx"]
+#eks_node_group-2_tags_Name                       = "intg-dev-ng-2"
+#eks_node_group-2_tags_Environment                = "development"
+#eks_node_group-2_scaling_config_desired_size     = "1"
+#eks_node_group-2_scaling_config_max_size         = "1"
+#eks_node_group-2_scaling_config_min_size         = "1"
+#eks_node_group-2_remote_access_ec2_ssh_key       = "keypair-name"
